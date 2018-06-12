@@ -17,12 +17,9 @@ for f in files:
     filename, ext = os.path.splitext(f)
     if ext == '.log':
 		file1 = open(f, 'r')
-		#text = file1.read().encode("utf8").strip()
-		#text = f.open('r',encoding='utf8')# as fe:
 		text = file1.read().strip()
-		#text = text.strip()
-		#file1.close()
 		read = re.findall('\¿.*?\?', text)
+		read = list(map(lambda x: x.decode('utf-8'), read))
 		merged.append(read)
 
 
@@ -39,6 +36,11 @@ for f in files:
 #import pandas as pd
 #result = pd.concat(merged)
 
-#result.to_csv('prueba.csv')
-for el in merged:
-	print(el)
+merged.to_csv('prueba.csv')
+#for el in merged:
+#	print(el)
+	#for preg in el:
+	#	print(preg.decode("utf-8"))
+	
+	
+	#https://stackoverflow.com/questions/14037540/writing-a-python-list-of-lists-to-a-csv-file
